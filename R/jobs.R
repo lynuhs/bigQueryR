@@ -149,7 +149,7 @@ bqr_get_job <- function(jobId = .Last.value, projectId = bqr_get_global_project(
                                    "GET",
                                    path_args = list(projects = projectId,
                                                     jobs = jobId),
-                                  pars_args = list(location = attr(data, "jobReference")$location))
+                                  pars_args = list(location = jobId$jobReference$location))
   
   req <- job(path_arguments = list(projects = projectId,
                                    jobs = jobId))
