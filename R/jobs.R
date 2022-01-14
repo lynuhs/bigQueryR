@@ -138,6 +138,7 @@ bqr_get_job <- function(jobId = .Last.value, projectId = bqr_get_global_project(
   check_bq_auth()
   
   if(is.job(jobId)){
+    location <- jobId$jobReference$location
     jobId <- jobId$jobReference$jobId
   }
   stopifnot(inherits(projectId, "character"),
@@ -149,7 +150,7 @@ bqr_get_job <- function(jobId = .Last.value, projectId = bqr_get_global_project(
                                    "GET",
                                    path_args = list(projects = projectId,
                                                     jobs = jobId),
-                                  pars_args = list(location = jobId$jobReference$location))
+                                  pars_args = list(location = location))
   
   req <- job(path_arguments = list(projects = projectId,
                                    jobs = jobId))
