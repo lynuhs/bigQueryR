@@ -95,10 +95,12 @@ bqr_query <- function(projectId = bqr_get_global_project(),
   if(!is.null(pageToken)){
     message("Paging through query results")
     jobId <- attr(data, "jobReference")$jobId
+    location <- attr(data, "jobReference")$location
     pr <- googleAuthR::gar_api_generator("https://www.googleapis.com/bigquery/v2",
                                          "GET",
                                          path_args = list(projects = projectId,
-                                                          queries = jobId),
+                                                          queries = jobId,
+                                                          location = location),
                                          pars_args = list(pageToken = pageToken), 
                                          data_parse_function = parse_bqr_query)
     i <- 1
