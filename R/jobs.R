@@ -148,7 +148,8 @@ bqr_get_job <- function(jobId = .Last.value, projectId = bqr_get_global_project(
     googleAuthR::gar_api_generator("https://www.googleapis.com/bigquery/v2",
                                    "GET",
                                    path_args = list(projects = projectId,
-                                                    jobs = jobId))
+                                                    jobs = jobId),
+                                  pars_args = list(location = attr(data, "jobReference")$location))
   
   req <- job(path_arguments = list(projects = projectId,
                                    jobs = jobId))
